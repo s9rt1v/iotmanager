@@ -329,6 +329,7 @@ namespace IoT.Application.DeviceAppService.DeviceService
 
 
             }
+            entity.LastModificationTime = DateTime.Now;
             var result = _deviceRepository.Update(entity);
             CurrentUnitOfWork.SaveChanges();
             return ObjectMapper.Map<DeviceDto>(result);

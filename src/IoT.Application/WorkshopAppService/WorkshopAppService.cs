@@ -170,6 +170,7 @@ namespace IoT.Application.WorkshopAppService
             var workshop = _workshopRepository.Get(input.Id);
             ObjectMapper.Map(input, workshop);
             workshop.Factory = factory;
+            workshop.LastModificationTime = DateTime.Now;
             var result = _workshopRepository.Update(workshop);
             CurrentUnitOfWork.SaveChanges();
             return ObjectMapper.Map<WorkshopDto>(workshop);

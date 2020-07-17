@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0nyGF6VBpvuUjq9HIIBfg856ABop5juQlMaZztHW9T1bDC1WDGFFuFdnV5fnJ3fgwtXhDHGq262qYmqiBII+6w==",
+  "dgSpecHash": "slL8ZM3/woQwK0aFiuk7npDApF3CLDqb8BBn6awYvrfz/+hUaCJ6tfL6Y8mrCV1qHTyz0jrrb7kyGS8zvXcOlA==",
   "success": true,
   "projectFilePath": "/Users/s9rt1v/Desktop/gitstuff/Abp_IoTManager-localTest/src/IoTManager.Migrator/IoTManager.Migrator.csproj",
   "expectedPackageFiles": [

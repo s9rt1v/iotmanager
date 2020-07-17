@@ -223,7 +223,7 @@ namespace IoT.Application.GatewayAppService
                     entity.Workshop = workshop;
                 }
             }
-
+            entity.LastModificationTime = DateTime.Now;
             var result = _gatewayRepository.Update(entity);
             CurrentUnitOfWork.SaveChanges();
             return ObjectMapper.Map<GatewayDto>(result);

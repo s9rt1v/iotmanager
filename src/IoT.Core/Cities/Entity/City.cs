@@ -14,6 +14,7 @@ namespace IoT.Core
         public City()
         {
             CreationTime = DateTime.Now;
+            LastModificationTime = DateTime.Now;
         }
         [Required]
         [MaxLength(30)]

@@ -15,5 +15,6 @@ namespace IoT.Application.CityAppService.DTO
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
         public DateTime CreationTime { get; set; }
+        public DateTime? LastModificationTime { get; set; }
     }
 }

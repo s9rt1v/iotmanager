@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nPltIMRwRaku8erwRq9qpKtsyL/D6n9x13MLOOJb6+JUiINYMAaIgnNozlGZzcPwGFAEWusLpLD4e2Tk2hdVOw==",
+  "dgSpecHash": "xm87MagI77ZT52cgSJd1V+UeiHF4B/nN6SGloaksE+KvUc/VQiBKW2aA2CnvSER1WGj0KGZRmic4Mgri39Emig==",
   "success": true,
   "projectFilePath": "/Users/s9rt1v/Desktop/gitstuff/Abp_IoTManager-localTest/src/IoT.EntityFrameworkCore/IoT.EntityFrameworkCore.csproj",
   "expectedPackageFiles": [

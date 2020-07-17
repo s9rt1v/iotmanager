@@ -94,6 +94,23 @@ namespace IoT.Application.CityAppService
             return new PagedResultDto<CityDto>(total,ObjectMapper.Map<List<CityDto>>(result));
 
         }
+        public Object GetAffilateFactoryAndWorkshopNumber(EntityDto<int> input)
+        {
+            var city = _cityRepository.Get(input.Id);
+            if (city.IsNullOrDeleted())
+            {
+                throw new ApplicationException("city不存在或已被删除");
+            }
+            var workshop = _workshopRepository.GetAll().Where(w=>w.Factory.CityId==input.Id).Where(w=>w.IsDeleted==false);
+            var factory = _factoryRepository.GetAll().Where(f=>f.CityId==input.Id).Where(f=>f.IsDeleted==false);
+            
+            return new
+            {
+                factoryNumber = factory.Count(),
+                workshopName = workshop.Count()
+
+            };
+        }
 
         //获得城市数量
         [HttpGet]
@@ -166,6 +183,7 @@ namespace IoT.Application.CityAppService
             }
 
             city.Remark = input.Remark;
+            city.LastModificationTime = DateTime.Now;
             var result= _cityRepository.Update(city);
             CurrentUnitOfWork.SaveChanges();
             return result.MapTo<CityDto>();

@@ -133,6 +133,7 @@ namespace IoT.Application.FactoryAppService
             var entity = _factoryRepository.Get(input.Id);
             ObjectMapper.Map(input, entity);
             entity.City = city;
+            entity.LastModificationTime = DateTime.Now;
             var result = _factoryRepository.Update(entity);
             CurrentUnitOfWork.SaveChanges();
             return ObjectMapper.Map<FactoryDto>(result);

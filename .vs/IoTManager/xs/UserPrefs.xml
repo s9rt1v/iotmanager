@@ -1,20 +1,20 @@
 ﻿<Properties StartupConfiguration="{38E184BD-E874-4633-A947-AED4FDB73F40}|Default">
   <MonoDevelop.Ide.ItemProperties.src.IoTManager.Web.Host PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="src/IoT.Application/CityAppService/CityAppService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/IoT.Application/CityAppService/ICityAppService.cs">
     <Files>
-      <File FileName="src/IoT.Application/CityAppService/CityAppService.cs" Line="84" Column="10" IsPinned="True" />
+      <File FileName="src/IoT.Application/CityAppService/CityAppService.cs" Line="97" Column="80" IsPinned="True" />
       <File FileName="src/IoTManager.EntityFrameworkCore/EntityFrameworkCore/IoTManagerDbContextConfigurer.cs" IsPinned="True" />
       <File FileName="src/IoT.Application/RegionAppService/DTO/CreateRegionDto.cs" IsPinned="True" />
       <File FileName="src/IoT.Application/DeviceAppService/DeviceService/Dto/DeviceDto.cs" IsPinned="True" />
-      <File FileName="src/IoT.Application/DeviceAppService/DeviceService/DeviceAppService.cs" IsPinned="True" />
+      <File FileName="src/IoT.Application/DeviceAppService/DeviceService/DeviceAppService.cs" Line="332" Column="56" IsPinned="True" />
       <File FileName="src/IoT.Application/DeviceAppService/DeviceService/reference2.cs" IsPinned="True" />
       <File FileName="src/IoT.Application/DeviceAppService/DeviceService/Dto/UpdateDeviceDto.cs" />
       <File FileName="src/IoT.Application/DeviceAppService/DeviceService/IDeviceAppService.cs" />
       <File FileName="src/IoT.Application/CityAppService/reference.cs" />
-      <File FileName="src/IoT.Core/Devices/Entity/Device.cs" />
-      <File FileName="src/IoT.Application/CityAppService/DTO/CityDto.cs" />
-      <File FileName="src/IoT.Application/FactoryAppService/FactoryAppService.cs" />
-      <File FileName="src/IoT.Application/GatewayAppService/GatewayAppService.cs" />
+      <File FileName="src/IoT.Core/Devices/Entity/Device.cs" Line="1" Column="1" />
+      <File FileName="src/IoT.Application/CityAppService/DTO/CityDto.cs" Line="17" Column="51" />
+      <File FileName="src/IoT.Application/FactoryAppService/FactoryAppService.cs" Line="136" Column="56" />
+      <File FileName="src/IoT.Application/GatewayAppService/GatewayAppService.cs" Line="226" Column="56" />
       <File FileName="src/IoT.Core/Devices/Entity/DeviceType.cs" />
       <File FileName="src/IoT.Application/DeviceAppService/DeviceTagService/DeviceTagAppService.cs" />
       <File FileName="src/IoT.Application/DeviceAppService/TagService/TagAppService.cs" />
@@ -33,7 +33,7 @@
       <File FileName="src/IoT.Core/Factories/IFactoryManager.cs" />
       <File FileName="src/IoT.Core/Thresholds/IThresholdManager.cs" />
       <File FileName="src/IoT.Core/Devices/DeviceManager.cs" />
-      <File FileName="src/IoT.EntityFrameworkCore/EntityFrameworkCore/Repositories/CityRepository.cs" />
+      <File FileName="src/IoT.EntityFrameworkCore/EntityFrameworkCore/Repositories/CityRepository.cs" Line="1" Column="1" />
       <File FileName="src/IoT.Core/Devices/Entity/DeviceTag.cs" />
       <File FileName="src/IoT.Core/Devices/Entity/OnlineTimeDaily.cs" />
       <File FileName="src/IoT.Core/Devices/IOnlineTimeDailyManager.cs" />
@@ -42,9 +42,9 @@
       <File FileName="src/IoT.EntityFrameworkCore/Migrations/20200715073700_Init2.Designer.cs" />
       <File FileName="src/IoT.EntityFrameworkCore/Migrations/20200715074503_Init4.Designer.cs" />
       <File FileName="src/IoT.EntityFrameworkCore/Migrations/20200715074503_Init4.cs" />
-      <File FileName="src/IoT.Application/CityAppService/DTO/CityPagedSortedAndFilteredDto.cs" />
-      <File FileName="src/IoT.Application/CityAppService/DTO/UpdateCityDto.cs" />
-      <File FileName="src/IoT.Application/WorkshopAppService/WorkshopAppService.cs" />
+      <File FileName="src/IoT.Application/CityAppService/DTO/CityPagedSortedAndFilteredDto.cs" Line="1" Column="1" />
+      <File FileName="src/IoT.Application/CityAppService/DTO/UpdateCityDto.cs" Line="1" Column="1" />
+      <File FileName="src/IoT.Application/WorkshopAppService/WorkshopAppService.cs" Line="173" Column="58" />
       <File FileName="src/IoT.Application/FieldAppService/FieldAppService.cs" />
       <File FileName="src/IoT.Application/ThresholdAppService/ThresholdAppService.cs" />
       <File FileName="src/IoT.Application/DeviceAppService/DeviceTypeService/DeviceTypeAppService.cs" />
@@ -54,6 +54,35 @@
       <File FileName="src/IoT.Application/GatewayAppService/IGatewayAppService.cs" />
       <File FileName="src/IoT.Application/ThresholdAppService/IThresholdAppService.cs" />
       <File FileName="src/IoT.Application/WorkshopAppService/IWorkshopAppService.cs" />
+      <File FileName="src/IoT.Core/Cities/Entity/City.cs" Line="17" Column="49" />
+      <File FileName="src/IoT.Application/CityAppService/DTO/CityGeoDto.cs" Line="1" Column="1" />
+      <File FileName="src/IoT.Application/CityAppService/DTO/CreateCityDto.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Core/Authentication/External/ExternalAuthConfiguration.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Core/Authentication/External/ExternalAuthManager.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Core/Authentication/External/ExternalAuthUserInfo.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Core/Authentication/JwtBearer/JwtTokenMiddleware.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Core/Authentication/JwtBearer/TokenAuthConfiguration.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Core/Authentication/External/IExternalAuthConfiguration.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Core/Authentication/External/ExternalLoginProviderInfo.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Core/Authentication/External/ExternalAuthProviderApiBase.cs" Line="24" Column="1" />
+      <File FileName="src/IoTManager.Application/Sessions/SessionAppService.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Application/Sessions/Dto/UserLoginInfoDto.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Application/Sessions/Dto/ApplicationInfoDto.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Application/Sessions/ISessionAppService.cs" Line="1" Column="1" />
+      <File FileName="src/IoT.EntityFrameworkCore/Migrations/20200715073051_Init.cs" Line="9" Column="1" />
+      <File FileName="src/IoT.EntityFrameworkCore/Migrations/20200715073051_Init.Designer.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Host/Startup/Startup.cs" Line="53" Column="15" />
+      <File FileName="src/IoTManager.Web.Host/Startup/AuthConfigurer.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Host/Startup/IoTManagerWebHostModule.cs" Line="18" Column="9" />
+      <File FileName="src/IoTManager.Web.Host/wwwroot/swagger/ui/abp.js" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Host/wwwroot/swagger/ui/index.html" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Host/Properties/launchSettings.json" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Host/Controllers/HomeController.cs" Line="11" Column="18" />
+      <File FileName="src/IoT.Core/IoTCoreModule.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Core/Controllers/IoTManagerControllerBase.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Core/Controllers/TokenAuthController.cs" Line="1" Column="1" />
+      <File FileName="src/IoTManager.Web.Host/Controllers/AntiForgeryController.cs" Line="1" Column="1" />
+      <File FileName="src/IoT.Application/CityAppService/ICityAppService.cs" Line="29" Column="74" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -63,35 +92,34 @@
               <Node name="IoT" expanded="True">
                 <Node name="IoT.Application" expanded="True">
                   <Node name="CityAppService" expanded="True">
-                    <Node name="CityAppService.cs" selected="True" />
+                    <Node name="DTO" expanded="True" />
+                    <Node name="ICityAppService.cs" selected="True" />
                   </Node>
                   <Node name="DeviceAppService" expanded="True">
                     <Node name="DeviceService" expanded="True" />
-                    <Node name="DeviceTagService" expanded="True" />
-                    <Node name="DeviceTypeService" expanded="True" />
                   </Node>
-                  <Node name="DeviceDataAppService" expanded="True" />
                   <Node name="FactoryAppService" expanded="True" />
                   <Node name="FieldAppService" expanded="True" />
                   <Node name="GatewayAppService" expanded="True" />
-                  <Node name="ThresholdAppService" expanded="True" />
                   <Node name="WorkshopAppService" expanded="True" />
                 </Node>
-                <Node name="IoT.MongoDB" expanded="True">
-                  <Node name="Dependencies" expanded="True" />
+                <Node name="IoT.Core" expanded="True">
+                  <Node name="Cities" expanded="True">
+                    <Node name="Entity" expanded="True" />
+                  </Node>
+                  <Node name="Devices" expanded="True">
+                    <Node name="Entity" expanded="True" />
+                  </Node>
+                </Node>
+                <Node name="IoT.EntityFrameworkCore" expanded="True">
+                  <Node name="EntityFrameworkCore" expanded="True" />
                 </Node>
               </Node>
               <Node name="IoTManager" expanded="True" />
-              <Node name="IoTManager.Web.Core" expanded="True">
-                <Node name="Configuration" expanded="True" />
-                <Node name="Models" expanded="True" />
-              </Node>
               <Node name="IoTManager.Web.Host" expanded="True">
-                <Node name="App_Data" expanded="True">
-                  <Node name="Logs" expanded="True" />
-                </Node>
                 <Node name="Properties" expanded="True" />
                 <Node name="Startup" expanded="True" />
+                <Node name="wwwroot" expanded="True" />
               </Node>
             </Node>
           </Node>

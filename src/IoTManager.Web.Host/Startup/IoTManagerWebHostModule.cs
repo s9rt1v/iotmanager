@@ -3,6 +3,8 @@ using Microsoft.Extensions.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using IoTManager.Configuration;
+using Abp.Configuration.Startup;
+using Abp.AspNetCore.Configuration;
 
 namespace IoTManager.Web.Host.Startup
 {
@@ -12,6 +14,8 @@ namespace IoTManager.Web.Host.Startup
     {
         private readonly IWebHostEnvironment _env;
         private readonly IConfigurationRoot _appConfiguration;
+
+        
 
         public IoTManagerWebHostModule(IWebHostEnvironment env)
         {

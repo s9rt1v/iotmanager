@@ -21,6 +21,7 @@ using Microsoft.Extensions.Options;
 using Abp.Json;
 using Abp.Dependency;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace IoTManager.Web.Host.Startup
 {
