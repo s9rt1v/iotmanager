@@ -14,7 +14,7 @@ namespace IoT.Application.FactoryAppService
         long GetNumber();
         PagedResultDto<FactoryDto> GetByCity(string CityName);
         FactoryDto GetByName(string factoryName);
-        Object GetAffilateNumber(EntityDto<int> input);
+        Object GetAffiliateNumber(EntityDto<int> input);
     }
 }
 

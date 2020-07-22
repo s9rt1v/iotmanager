@@ -9,6 +9,7 @@ using Abp.Domain.Uow;
 using AutoMapper;
 using IoT.Core;
 using IoT.Core.MongoDb;
+using MongoDB.Driver;
 
 namespace IoT.Application
 {
@@ -16,18 +17,20 @@ namespace IoT.Application
     {
         //private readonly IDeviceDataRepository _dataRepository;
         private readonly IDeviceDataManager _dataManager;
+        private readonly IMongoCollection<DeviceData> _deviceDatas;
 
         public DeviceDataAppService( IDeviceDataManager dataManager)
         {
            // _dataRepository = dataRepository;
             _dataManager = dataManager;
+            _deviceDatas = _dataManager.DeviceDatas;
         }
 
 
         public PagedResultDto<DeviceDataDto> GetAll(PagedResultRequestDto input)
         {
             
-            var data= _dataManager.GetAll(input);
+            var data= _dataManager.GetAllDeviceData(input);
             var total = data.Count;
             
   
@@ -36,8 +39,10 @@ namespace IoT.Application
 
         public DeviceDataDto GetByName(string deviceName)
         {
-            var data = _dataManager.GetByName(deviceName);
+            var data = _dataManager.GetDeviceDataByDeviceName(deviceName);
             return ObjectMapper.Map<DeviceDataDto>(data);
         }
+
+        
     }
 }

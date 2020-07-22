@@ -71,7 +71,7 @@ namespace IoT.Application.WorkshopAppService
             return result;
         }
 
-        public Object GetAffilateNumber(EntityDto<int> input)
+        public Object GetAffiliateNumber(EntityDto<int> input)
         {
             var workshop = _workshopRepository.Get(input.Id);
             if (workshop.IsNullOrDeleted())

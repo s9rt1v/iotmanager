@@ -26,6 +26,8 @@
     <Folder Include="ThresholdAppService\DTO\" />
     <Folder Include="RegionAppService\" />
     <Folder Include="RegionAppService\DTO\" />
+    <Folder Include="AlarmInfoAppService\" />
+    <Folder Include="AlarmInfoAppService\DTO\" />
   </ItemGroup>
 
 </Project>

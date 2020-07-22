@@ -4,12 +4,18 @@ using System.Text;
 using Abp.Application.Services.Dto;
 using Abp.Dependency;
 using Abp.Domain.Services;
+using IoT.Core.MongoDb.Model;
+using MongoDB.Driver;
 
 namespace IoT.Core.MongoDb
 {
     public interface IDeviceDataManager:IDomainService
     {
-        DeviceData GetByName(string deviceName);
-        List<DeviceData> GetAll(PagedResultRequestDto input);
+        DeviceData GetDeviceDataByDeviceName(string deviceName);
+        List<DeviceData> GetAllDeviceData(PagedResultRequestDto input);
+        IMongoCollection<DeviceData> DeviceDatas { get; set; }
+        IMongoCollection<AlarmInfoModel> AlarmInfo { get; set; }
+        AlarmInfoModel GetAlarmInfoByDeviceId(string deviceId);
+        List<AlarmInfoModel> GetAllAlarmInfo(PagedResultRequestDto input);
     }
 }

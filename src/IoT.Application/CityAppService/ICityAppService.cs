@@ -26,6 +26,6 @@ namespace IoT.Application.CityAppService
         List<object> GetCityMapInfo(String cityName);
         object GetCityFactoryTree();
         List<object> GetCityOptions();
-        Object GetAffilateFactoryAndWorkshopNumber(EntityDto<int> input);
+        Object GetAffiliateFactoryAndWorkshopNumber(EntityDto<int> input);
     }
 }

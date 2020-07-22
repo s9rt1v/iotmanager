@@ -16,6 +16,7 @@ namespace IoT.Application.GatewayAppService
         PagedResultDto<GatewayDto> GetByFactory(string FactoryName);
         PagedResultDto<GatewayDto> GetByWorkshop(string WorkshopName);
         GatewayDto GetByName(string gatewayName);
+        Object GetAffiliateNumber(EntityDto<int> input);
     }
 }
 

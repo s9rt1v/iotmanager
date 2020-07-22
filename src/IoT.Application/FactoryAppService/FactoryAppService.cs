@@ -107,7 +107,7 @@ namespace IoT.Application.FactoryAppService
             return query.Count();
         }
         //获得附属类型的数量
-        public Object GetAffilateNumber(EntityDto<int> input)
+        public Object GetAffiliateNumber(EntityDto<int> input)
         {
             var factory = _factoryRepository.Get(input.Id);
             if (factory.IsNullOrDeleted())

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -26,5 +27,12 @@ namespace IoT.Core
         public string IsScam { get; set; }
         public string Mark { get; set; }
         public string IsCheck { get; set; }
+        //public long? CreatorUserId { get ; set ; }
+        //public DateTime CreationTime { get ; set ; }
+        //public long? LastModifierUserId { get ; set ; }
+        //public DateTime? LastModificationTime { get ; set ; }
+        //public long? DeleterUserId { get; set; }
+        //public DateTime? DeletionTime { get; set; }
+        //public bool IsDeleted { get; set; }
     }
 }

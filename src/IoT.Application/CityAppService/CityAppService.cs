@@ -94,7 +94,7 @@ namespace IoT.Application.CityAppService
             return new PagedResultDto<CityDto>(total,ObjectMapper.Map<List<CityDto>>(result));
 
         }
-        public Object GetAffilateFactoryAndWorkshopNumber(EntityDto<int> input)
+        public Object GetAffiliateFactoryAndWorkshopNumber(EntityDto<int> input)
         {
             var city = _cityRepository.Get(input.Id);
             if (city.IsNullOrDeleted())

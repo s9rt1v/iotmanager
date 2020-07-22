@@ -65,7 +65,7 @@ namespace IoT.Application.GatewayAppService
             return ObjectMapper.Map<GatewayDto>(entity);
         }
 
-        public Object GetAffilateNumber(EntityDto<int> input)
+        public Object GetAffiliateNumber(EntityDto<int> input)
         {
             var gateway = _gatewayRepository.Get(input.Id);
             if (gateway.IsNullOrDeleted())
