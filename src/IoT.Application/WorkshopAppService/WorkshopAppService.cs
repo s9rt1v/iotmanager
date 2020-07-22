@@ -7,11 +7,14 @@ using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
+using Abp.Extensions;
 using Abp.Linq.Extensions;
 using IoT.Application.WorkshopAppService.DTO;
 using IoT.Core;
 using IoT.Core.Cities;
+using IoT.Core.Devices;
 using IoT.Core.Factories;
+using IoT.Core.Gateways;
 using IoT.Core.Workshops;
 using L._52ABP.Application.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -25,16 +28,22 @@ namespace IoT.Application.WorkshopAppService
         private readonly IFactoryRepository _factoryRepository;
         private readonly ICityRepository _cityRepository;
         private readonly IWorkshopManager _workshopManager;
+        private readonly IDeviceRepository _deviceRepository;
+        private readonly IGatewayRepository _gatewayRepository;
 
         public WorkshopAppService(IWorkshopRepository workshopRepository,
             IFactoryRepository factoryRepository,
             ICityRepository cityRepository,
-            IWorkshopManager workshopManager)
+            IWorkshopManager workshopManager,
+            IGatewayRepository gatewayRepository,
+            IDeviceRepository deviceRepository)
         {
             _workshopRepository = workshopRepository;
             _factoryRepository = factoryRepository;
             _cityRepository = cityRepository;
             _workshopManager = workshopManager;
+            _gatewayRepository = gatewayRepository;
+            _deviceRepository = deviceRepository;
         }
 
 
@@ -62,9 +71,25 @@ namespace IoT.Application.WorkshopAppService
             return result;
         }
 
+        public Object GetAffilateNumber(EntityDto<int> input)
+        {
+            var workshop = _workshopRepository.Get(input.Id);
+            if (workshop.IsNullOrDeleted())
+            {
+                throw new ApplicationException("workshop不存在或已被删除");
+            }
+            var gateway = _gatewayRepository.GetAll().Where(g => g.WorkshopId == input.Id).Where(g => g.IsDeleted == false);
+            var device = _deviceRepository.GetAll().Where(d => d.Gateway.WorkshopId == input.Id).Where(d => d.IsDeleted == false);
+            return new
+            {
+                gatewayNumber = gateway.Count(),
+                deviceNumber = device.Count()
+            };
+        }
+
         public PagedResultDto<WorkshopDto> GetAll(PagedSortedAndFilteredInputDto input)
         {
-            var query = _workshopRepository.GetAllIncluding(w=>w.Factory).Where(w=>w.IsDeleted==false)
+            var query = _workshopRepository.GetAllIncluding(w=>w.Factory).Where(w=>w.IsDeleted==false).WhereIf(!input.FilterText.IsNullOrEmpty(), w =>w.WorkshopName.Contains(input.FilterText))
                 .Include(w=>w.Factory.City);
             var total = query.Count();
             var result = input.Sorting != null

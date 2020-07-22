@@ -7,11 +7,15 @@ using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
+using Abp.Extensions;
 using Abp.Linq.Extensions;
 using IoT.Application.FactoryAppService.DTO;
 using IoT.Core;
 using IoT.Core.Cities;
+using IoT.Core.Devices;
 using IoT.Core.Factories;
+using IoT.Core.Gateways;
+using IoT.Core.Workshops;
 using L._52ABP.Application.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,11 +27,23 @@ namespace IoT.Application.FactoryAppService
         private readonly IFactoryRepository _factoryRepository;
         private readonly ICityRepository _cityRepository;
         private readonly IFactoryManager _factoryManager;
-        public FactoryAppService(IFactoryRepository factoryRepository, ICityRepository cityRepository, IFactoryManager factoryManager)
+        private readonly IWorkshopRepository _workshopRepository;
+        private readonly IDeviceRepository _deviceRepository;
+        private readonly IGatewayRepository _gatewayRepository;
+
+        public FactoryAppService(IFactoryRepository factoryRepository,
+            ICityRepository cityRepository,
+            IFactoryManager factoryManager,
+            IWorkshopRepository workshopRepository,
+            IGatewayRepository gatewayRepository,
+            IDeviceRepository deviceRepository)
         {
             _factoryRepository = factoryRepository;
             _cityRepository = cityRepository;
             _factoryManager = factoryManager;
+            _workshopRepository = workshopRepository;
+            _gatewayRepository = gatewayRepository;
+            _deviceRepository = deviceRepository;
         }
 
         //通过id获得工厂
@@ -59,7 +75,7 @@ namespace IoT.Application.FactoryAppService
         //获得所有工厂
         public PagedResultDto<FactoryDto> GetAll(PagedSortedAndFilteredInputDto input)
         {
-            var query = _factoryRepository.GetAllIncluding(q => q.City).Where(f=>f.IsDeleted==false);
+            var query = _factoryRepository.GetAllIncluding(q => q.City).Where(f => f.IsDeleted == false).WhereIf(!input.FilterText.IsNullOrEmpty(), f => f.FactoryName.Contains(input.FilterText));
             var total = query.Count();
             var result = input.Sorting != null
                 ? query.OrderBy(input.Sorting).AsNoTracking<Factory>().PageBy(input).ToList()
@@ -89,6 +105,24 @@ namespace IoT.Application.FactoryAppService
         {
             var query = _factoryRepository.GetAll().Where(f => f.IsDeleted == false);
             return query.Count();
+        }
+        //获得附属类型的数量
+        public Object GetAffilateNumber(EntityDto<int> input)
+        {
+            var factory = _factoryRepository.Get(input.Id);
+            if (factory.IsNullOrDeleted())
+            {
+                throw new ApplicationException("factory不存在或已被删除");
+            }
+            var workshop = _workshopRepository.GetAll().Where(w => w.FactoryId == input.Id).Where(w => w.IsDeleted == false);
+            var gateway = _gatewayRepository.GetAll().Where(g => g.Workshop.FactoryId == input.Id).Where(g => g.IsDeleted == false);
+            var device = _deviceRepository.GetAll().Where(d=>d.Gateway.Workshop.FactoryId==input.Id).Where(d=>d.IsDeleted==false);
+            return new
+            {
+                workshopNumber = workshop.Count(),
+                gatewayNumber = gateway.Count(),
+                deviceNumber = device.Count()
+            };
         }
 
         //新建工厂

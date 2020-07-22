@@ -15,6 +15,7 @@ namespace IoT.Application.WorkshopAppService
         PagedResultDto<WorkshopDto> GetByCity(string CityName);
         PagedResultDto<WorkshopDto> GetByFactory(string FactoryName);
         WorkshopDto GetByName(string workshopName);
+        Object GetAffilateNumber(EntityDto<int> input);
     }
 }
 

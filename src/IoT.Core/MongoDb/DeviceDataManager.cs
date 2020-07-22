@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Abp.Application.Services.Dto;
-using Abp.Dependency;
 using MongoDB.Driver;
 using System.Linq;
 using Abp.Domain.Services;
 using Microsoft.Extensions.Options;
 using IoTManager;
-using Microsoft.Extensions.Options;
+using IoT.Core.MongoDb.Model;
 
 namespace IoT.Core.MongoDb
 {
@@ -18,6 +15,7 @@ namespace IoT.Core.MongoDb
         //private readonly MongoDbConfiguration _mongoConfiguration;
         private readonly IMongoCollection<DeviceData> _deviceDatas;
         private readonly IOptions<ConnectionStrings> _connectionStrings;
+        private readonly IMongoCollection<AlarmInfoModel> _alarmInfo;
 
         public DeviceDataManager(IOptions<ConnectionStrings> connectionStrings)
         {
@@ -28,8 +26,13 @@ namespace IoT.Core.MongoDb
             
             var database = client.GetDatabase(MongoConsts.DbName);
             _deviceDatas = database.GetCollection<DeviceData>(MongoConsts.MonitorData);
+            DeviceDatas = _deviceDatas;
+            AlarmInfo = _alarmInfo;
             
         }
+
+        public IMongoCollection<DeviceData> DeviceDatas { get; set; }
+        public IMongoCollection<AlarmInfoModel> AlarmInfo { get; set; }
 
         public DeviceData GetByName(string deviceName)
         {

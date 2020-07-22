@@ -17,6 +17,8 @@ using IoT.Core.Workshops;
 using IoT.Core.Factories;
 using IoT.Core.Cities;
 using Microsoft.AspNetCore.Mvc;
+using IoT.Core.Devices;
+using Abp.Extensions;
 
 namespace IoT.Application.GatewayAppService
 {
@@ -28,13 +30,15 @@ namespace IoT.Application.GatewayAppService
         private readonly IFactoryRepository _factoryRepository;
         private readonly ICityRepository _cityRepository;
         private readonly IGatewayManager _gatewayManager;
+        private readonly IDeviceRepository _deviceRepository;
 
         public GatewayAppService(IRepository<GatewayType, int> gatewayTypeRepository,
             IGatewayRepository gatewayRepository,
             IWorkshopRepository workshopRepository,
             IFactoryRepository factoryRepository,
             ICityRepository cityRepository,
-            IGatewayManager gatewayManager)
+            IGatewayManager gatewayManager,
+            IDeviceRepository deviceRepository)
         {
             _gatewayTypeRepository = gatewayTypeRepository;
             _gatewayRepository = gatewayRepository;
@@ -42,6 +46,7 @@ namespace IoT.Application.GatewayAppService
             _factoryRepository = factoryRepository;
             _cityRepository = cityRepository;
             _gatewayManager = gatewayManager;
+            _deviceRepository = deviceRepository;
         }
 
 
@@ -60,6 +65,20 @@ namespace IoT.Application.GatewayAppService
             return ObjectMapper.Map<GatewayDto>(entity);
         }
 
+        public Object GetAffilateNumber(EntityDto<int> input)
+        {
+            var gateway = _gatewayRepository.Get(input.Id);
+            if (gateway.IsNullOrDeleted())
+            {
+                throw new ApplicationException("gateway不存在或已被删除");
+            }
+            var device = _deviceRepository.GetAll().Where(d => d.GatewayId == input.Id).Where(d => d.IsDeleted == false);
+            return new
+            {
+                deviceNumber = device.Count()
+            };
+        }
+
         public GatewayDto GetByName(string gatewayName)
         {
             var query = _gatewayRepository.GetAll().Where(g => g.GatewayName.Contains(gatewayName)).Where(g=>g.IsDeleted==false)
@@ -70,14 +89,14 @@ namespace IoT.Application.GatewayAppService
             var entity = query.FirstOrDefault();
             if (entity.IsNullOrDeleted())
             {
-                throw new ApplicationException("该设备不存在或已被删除");
+                throw new ApplicationException("该gateway不存在或已被删除");
             }
             return ObjectMapper.Map<GatewayDto>(entity);
         }
 
         public PagedResultDto<GatewayDto> GetAll(PagedSortedAndFilteredInputDto input)
         {
-            var query=_gatewayRepository.GetAll().Where(g=>g.IsDeleted==false)
+            var query=_gatewayRepository.GetAll().Where(g=>g.IsDeleted==false).WhereIf(!input.FilterText.IsNullOrEmpty(), g => g.GatewayName.Contains(input.FilterText))
                 .Include(g => g.Workshop)
                 .Include(g => g.Workshop.Factory)
                 .Include(g => g.Workshop.Factory.City)

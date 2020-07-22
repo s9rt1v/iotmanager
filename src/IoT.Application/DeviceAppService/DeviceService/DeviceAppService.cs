@@ -22,6 +22,7 @@ using IoT.Core.Fields;
 using IoT.Application.FieldAppService.DTO;
 using System.IO;
 using Microsoft.Extensions.Logging;
+using Abp.Extensions;
 
 namespace IoT.Application.DeviceAppService.DeviceService
 {
@@ -106,7 +107,7 @@ namespace IoT.Application.DeviceAppService.DeviceService
         //得到所有的设备
         public PagedResultDto<DeviceDto> GetAll(PagedSortedAndFilteredInputDto input)
         {
-            var query = _deviceRepository.GetAll().Where(d => d.IsDeleted == false)
+            var query = _deviceRepository.GetAll().Where(d => d.IsDeleted == false).WhereIf(!input.FilterText.IsNullOrEmpty(), d =>d.DeviceName.Contains(input.FilterText))
                .Include(d => d.Gateway)
                .Include(d => d.Gateway.Workshop)
                .Include(d => d.Gateway.Workshop.Factory)
